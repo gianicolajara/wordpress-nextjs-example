@@ -6,7 +6,7 @@ import Image from "next/image";
 const About = ({ title = "", content = "", imageData = {} }) => {
   return (
     <SectionApp>
-      <div className="grid grid-cols-1 grid-rows-[repeat(2,_300px)] lg:grid-cols-2 lg:grid-rows-[300px] lg:gap-10">
+      <div className="grid grid-cols-1 grid-rows-[repeat(2,_300px)] lg:grid-cols-2 lg:grid-rows-[300px] gap-10">
         <div className="flex flex-col gap-3 justify-center">
           <Subtitle>{title}</Subtitle>
 
