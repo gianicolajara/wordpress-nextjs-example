@@ -22,38 +22,36 @@ const Post = ({ post, posts }) => {
 
   return (
     <>
-      <Head>
-        <title>{`${post.title} | Coffee Blog` || "...loading"}</title>
-      </Head>
-      <SectionApp>
-        {router.isFallback ? (
-          <>...Loading</>
-        ) : (
-          <>
-            <div className="flex items-center gap-2">
-              <Button onClick={handleBack}>&lt;</Button>
-              <small>
-                <MenuItem url={`/`}>Home</MenuItem> / Posts /{" "}
-                {post?.title || "No Title"}
-              </small>
-            </div>
-            <PostHeader
-              title={post?.title}
-              date={post?.date}
-              author={post?.author.node.firstName}
-              imageData={
-                post?.featuredImage?.node || {
-                  sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
-                  altText: "image default coffee",
-                }
+      {router.isFallback ? (
+        <>...Loading</>
+      ) : (
+        <SectionApp>
+          <Head>
+            <title>{`${post?.title} | Coffee Blog` || "...loading"}</title>
+          </Head>
+          <div className="flex items-center gap-2">
+            <Button onClick={handleBack}>&lt;</Button>
+            <small>
+              <MenuItem url={`/`}>Home</MenuItem> / Posts /{" "}
+              {post?.title || "No Title"}
+            </small>
+          </div>
+          <PostHeader
+            title={post?.title}
+            date={post?.date}
+            author={post?.author.node.firstName}
+            imageData={
+              post?.featuredImage?.node || {
+                sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
+                altText: "image default coffee",
               }
-            />
-            <PostTags tags={post?.tags.edges} />
-            <PostBody content={post.content} />
-            {posts && posts.length > 0 && <MorePosts posts={posts} />}
-          </>
-        )}
-      </SectionApp>
+            }
+          />
+          <PostTags tags={post?.tags.edges} />
+          <PostBody content={post.content} />
+          {posts && posts.length > 0 && <MorePosts posts={posts} />}
+        </SectionApp>
+      )}
     </>
   );
 };
