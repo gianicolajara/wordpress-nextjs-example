@@ -2,6 +2,7 @@ import About from "../components/About";
 import BlogsHome from "../components/BlogsHome";
 import Heroe from "../components/Heroe";
 import TypesCoffee from "../components/TypesCoffee";
+import Head from "next/head";
 import {
   getAboutUs,
   getBlogsToHomePage,
@@ -12,6 +13,9 @@ import {
 export default function Home({ blogs, typesCoffee, aboutUs, heroe }) {
   return (
     <>
+      <Head>
+        <title>Coffee Blog</title>
+      </Head>
       <Heroe
         title={heroe?.title}
         description={heroe?.excerpt}

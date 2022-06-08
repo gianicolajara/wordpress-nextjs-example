@@ -7,6 +7,7 @@ import PostTags from "../../components/PostTags/index.js";
 import Button from "../../components/Button/index.js";
 import MenuItem from "../../components/MenuItem/index.js";
 import MorePosts from "../../components/MorePosts/index.js";
+import Head from "next/head.js";
 
 const Post = ({ post, posts }) => {
   const router = useRouter();
@@ -20,35 +21,40 @@ const Post = ({ post, posts }) => {
   };
 
   return (
-    <SectionApp>
-      {router.isFallback ? (
-        <>...Loading</>
-      ) : (
-        <>
-          <div className="flex items-center gap-2">
-            <Button onClick={handleBack}>&lt;</Button>
-            <small>
-              <MenuItem url={`/`}>Home</MenuItem> / Posts /{" "}
-              {post?.title || "No Title"}
-            </small>
-          </div>
-          <PostHeader
-            title={post?.title}
-            date={post?.date}
-            author={post?.author.node.firstName}
-            imageData={
-              post?.featuredImage?.node || {
-                sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
-                altText: "image default coffee",
+    <>
+      <Head>
+        <title>{`${post.title} | Coffee Blog` || "...loading"}</title>
+      </Head>
+      <SectionApp>
+        {router.isFallback ? (
+          <>...Loading</>
+        ) : (
+          <>
+            <div className="flex items-center gap-2">
+              <Button onClick={handleBack}>&lt;</Button>
+              <small>
+                <MenuItem url={`/`}>Home</MenuItem> / Posts /{" "}
+                {post?.title || "No Title"}
+              </small>
+            </div>
+            <PostHeader
+              title={post?.title}
+              date={post?.date}
+              author={post?.author.node.firstName}
+              imageData={
+                post?.featuredImage?.node || {
+                  sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
+                  altText: "image default coffee",
+                }
               }
-            }
-          />
-          <PostTags tags={post?.tags.edges} />
-          <PostBody content={post.content} />
-          <MorePosts posts={posts} />
-        </>
-      )}
-    </SectionApp>
+            />
+            <PostTags tags={post?.tags.edges} />
+            <PostBody content={post.content} />
+            {posts && posts.length > 0 && <MorePosts posts={posts} />}
+          </>
+        )}
+      </SectionApp>
+    </>
   );
 };
 

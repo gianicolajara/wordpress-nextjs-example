@@ -1,3 +1,4 @@
+import Head from "next/head";
 import CardBlogOnly from "../../components/CardBlogOnly";
 import Pagination from "../../components/Pagination";
 import SectionApp from "../../components/Section";
@@ -7,39 +8,44 @@ const numberOfPostPerPage = 5;
 
 const BlogPage = ({ pageInfo, posts }) => {
   return (
-    <SectionApp>
-      <div>
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(450px,_1fr))] lg:grid-cols-[repeat(auto-fit,_minmax(450px,450px))] gap-5">
-          {posts &&
-            posts.map(({ node }) => (
-              <CardBlogOnly
-                key={node?.id}
-                title={node?.title}
-                categoryData={node?.categories.edges[0]?.node}
-                imageData={
-                  node?.featuredImage?.node || {
-                    sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
-                    altText: "image default coffee",
+    <>
+      <Head>
+        <title>Coffee Blog</title>
+      </Head>
+      <SectionApp>
+        <div>
+          <div className="grid grid-cols-[repeat(auto-fit,_1fr] lg:grid-cols-[repeat(auto-fit,_minmax(350px,450px))] gap-5">
+            {posts &&
+              posts.map(({ node }) => (
+                <CardBlogOnly
+                  key={node?.id}
+                  title={node?.title}
+                  categoryData={node?.categories.edges[0]?.node}
+                  imageData={
+                    node?.featuredImage?.node || {
+                      sourceUrl: `${process.env.NEXT_PUBLIC_PATH_URL}/images/heroe.jpg`,
+                      altText: "image default coffee",
+                    }
                   }
-                }
-                content={node?.excerpt}
-                date={node?.date}
-                slug={node?.slug}
-              />
-            ))}
-        </div>
+                  content={node?.excerpt}
+                  date={node?.date}
+                  slug={node?.slug}
+                />
+              ))}
+          </div>
 
-        <div className="py-5">
-          <Pagination
-            numberOfPages={numberOfPostPerPage}
-            totalItems={pageInfo?.offsetPagination?.total}
-            prev={pageInfo?.offsetPagination?.hasPrevious}
-            next={pageInfo?.offsetPagination?.hasMore}
-            pagePath="/blogs/"
-          />
+          <div className="py-5">
+            <Pagination
+              numberOfPages={numberOfPostPerPage}
+              totalItems={pageInfo?.offsetPagination?.total}
+              prev={pageInfo?.offsetPagination?.hasPrevious}
+              next={pageInfo?.offsetPagination?.hasMore}
+              pagePath="/blogs/"
+            />
+          </div>
         </div>
-      </div>
-    </SectionApp>
+      </SectionApp>
+    </>
   );
 };
 

@@ -4,7 +4,16 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <meta name="description" content="blog page about coffee" />
+        <meta name="keywords" content="coffee, coffee beans, beans, coup" />
+        <meta name="author" content="Gianicola Jara" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <meta name="robots" content="index,follow" />
+        <meta name="google" content="notranslate" />
+        <meta name="copyright" content="Gianicola Jara" />
+        <meta name="application-name" content="coffee blog" />
+        <meta property="og:title" content="coffee blog" />
+        <meta property="og:description" content="blog page about coffee" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"

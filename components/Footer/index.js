@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 import Subtitle from "../Subtitle";
 import P from "../P";
+import { menu, title } from "../../lib/config";
 
 const social = [
   {
@@ -26,18 +27,16 @@ const social = [
 ];
 
 const Footer = () => {
-  const { config, menuItems } = useContext(ConfigContext);
+  /*  const { config, menuItems } = useContext(ConfigContext); */
 
   return (
     <footer className="bg-black p-5">
       <div className="flex w-full min-h-[300px] flex-col lg:flex-row">
         <div className="flex flex-1 justify-center items-center">
-          {config && <Brand color="text-white" title={config.title} />}
+          <Brand color="text-white" title={title} />
         </div>
         <div className="flex flex-col gap-1 flex-1 justify-center items-center">
-          {menuItems && (
-            <ListMenuItems menuItems={menuItems} color="text-white" />
-          )}
+          <ListMenuItems menuItems={menu} color="text-white" />
         </div>
         <div className="flex flex-col gap-1 flex-1 justify-center items-center">
           <Subtitle color="text-white">Visit Our Social Pages</Subtitle>

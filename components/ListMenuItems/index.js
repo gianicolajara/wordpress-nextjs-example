@@ -4,8 +4,8 @@ import MenuItem from "../MenuItem";
 
 const ListMenuItems = ({ menuItems = [], color = "" }) => {
   return menuItems.map((item) => (
-    <MenuItem key={item.node.id} color={color} url={setUrl(item.node.label)}>
-      {item.node.label}
+    <MenuItem key={item.id} color={color} url={item.url}>
+      {item.label}
     </MenuItem>
   ));
 };

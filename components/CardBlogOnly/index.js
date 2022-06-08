@@ -11,7 +11,7 @@ const CardBlogOnly = ({
   categoryData = null,
 }) => {
   return (
-    <article className="flex flex-col w-full shadow-md rounded-lg overflow-hidden">
+    <article className="flex flex-col w-full max-w-full shadow-md rounded-lg overflow-hidden">
       {imageData && categoryData && (
         <HeaderCardBlog
           alt={imageData?.altText}
